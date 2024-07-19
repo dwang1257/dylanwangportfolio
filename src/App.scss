@@ -1,0 +1,14 @@
+$primary-color: #9C9C6E;
+
+@import 'animate.css';
+
+@font-face {
+  font-family: 'Cutive Mono';
+  src: url('./assets/fonts/CutiveMono-Regular.ttf') format('truetype');
+
+}
+
+input,
+textarea {
+  font-family: 'Cutive Mono';
+}

@@ -1,0 +1,53 @@
+
+.contact-title {
+    text-align: center;
+    padding-top: 15px;
+    font-weight: 400;
+    font-size: 50px;
+}
+
+form {
+        display: flex;
+        flex-direction: column;
+        width: 400px;
+        height: 100%;
+        margin-left: 10%;
+        margin-top: 10%;
+    }
+
+input, textarea {
+        padding-top: 20px;
+        padding-bottom: 20px;
+        background-color: #77815C;
+        font-size: 25px;
+        margin-top: 20px;
+        border: none;
+
+    }
+
+label {
+        font-size: 20px;
+        font-weight: 100;
+    }
+
+.my-pic {
+    position: absolute;
+    width: 400px;
+    right: 15%;
+    top: 17%;
+    height: auto;
+    border-radius: 5px;
+
+}
+
+.send-button {
+    letter-spacing: 2px;
+    border: 1px solid black;
+
+    &:hover {
+        background-color: #000000;
+        color: #9C9C6E;
+    }
+}
+
+
