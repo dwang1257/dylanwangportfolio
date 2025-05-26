@@ -2,7 +2,8 @@ import './Contact.scss';
 import React, { useRef, useState } from 'react';
 import emailjs from '@emailjs/browser';
 import Animate from '../Animate/Animate';
-import pic from '../../assets/images/IMG_9587.jpg';
+
+
 const Contact = () => {
     const form = useRef();
     const nameRef = useRef();
@@ -22,11 +23,13 @@ const Contact = () => {
       .then(
         () => {
           console.log('SUCCESS!');
+          alert('Message Sent Successfully!');
           nameRef.current.value= '';
           emailRef.current.value = '';
           messageRef.current.value = '';
         },
         (error) => {
+          alert('Failed to send message, please try again later.');
           console.log('FAILED...', error.text);
         },
       );
@@ -43,7 +46,6 @@ const Contact = () => {
             <textarea name="message" ref = {messageRef} />
             <input className='send-button' type="submit" value="Send" />
             </form>
-            <img className = 'my-pic' src={pic} alt = 'picture' />
         </div>
     )
 }
