@@ -3,40 +3,52 @@ import './Projects.scss';
 import Animate from '../Animate/Animate';
 
 const Projects = () => {
-  const expArray = ['E', 'x', 'p', 'e', 'r', 'i', 'e', 'n', 'c', 'e'];
+  const expArray = ['P', 'r', 'o', 'j', 'e', 'c', 't', 's'];
   const [letterClass, setLetterClass] = useState('text-animate');
   const [expandedCard, setExpandedCard] = useState(null);
 
-  const experiences = [
+  const projects = [
     {
       id: 1,
-      title: "Software Engineer Intern",
-      company: "Fidelity Investments",
-      location: "Merrimack, NH",
-      period: "June 2025 – Aug 2025",
-      description: "Incoming Software Engineer Intern at Fidelity Investments, leveraging Angular, Spring Boot, and SQL to develop and optimize scalable software solutions."
+      title: "Lightbulb",
+      subtitle: "AI-Powered Learning Platform",
+      liveLink: "https://uselightbulb.vercel.app",
+      githubLink: "https://github.com/dwang1257/lightbulb",
+      period: "2024 - Present",
+      description: "An intelligent learning platform that uses AI to help students understand complex concepts through personalized explanations and interactive learning experiences."
     },
     {
       id: 2,
-      title: "Machine Learning Research Intern",
-      company: "University of Massachusetts Lowell",
-      location: "Lowell, MA",
-      period: "July 2024 – Aug 2024",
+      title: "VCT Data Analytics",
+      subtitle: "Esports Statistics Dashboard",
+      liveLink: null,
+      githubLink: "https://github.com/dwang1257/VCT-Data",
+      period: "2024",
       description: [
-        "Optimized data preparation pipeline by eliminating 50+ irrelevant endoscopy images and establishing an 80/20 train–test split, boosting model accuracy and training throughput for medical imaging applications.",
-        "Developed and integrated a custom PyTorch Dataset class with advanced augmentations (rotation, flipping, cropping) and automated COCO API driven mask generation, producing 1,000+ precise segmentation masks via Python (OS, Pillow, NumPy) and reducing preprocessing errors while enhancing robustness of downstream neural models."
+        "Comprehensive data analytics platform for Valorant Champions Tour (VCT) esports statistics and performance metrics.",
+        "Built with React and data visualization libraries to provide insights into player performance, team strategies, and tournament trends."
       ]
     },
     {
       id: 3,
-      title: "Test Engineering Intern",
-      company: "Charm Sciences",
-      location: "Andover, MA",
-      period: "Jun 2022 – Sep 2022",
+      title: "Temperature Sensor System",
+      subtitle: "IoT Hardware Project",
+      liveLink: null,
+      githubLink: "https://github.com/dwang1257/temperature-sensor",
+      period: "2023",
       description: [
-        "Performed end-to-end testing and QA for firmware powering 100+ ROSA and Digital Dry Block Incubators, ensuring 100% reliability and performance for clients.",
-        "Gained hands-on experience with the full hardware product lifecycle, from design through assembly, while applying insights to streamline workflows and improve operational efficiency."
+        "Arduino-based temperature monitoring system with real-time data logging and alert capabilities.",
+        "Integrated with web dashboard for remote monitoring and historical data analysis."
       ]
+    },
+    {
+      id: 4,
+      title: "PomFocus App",
+      subtitle: "Productivity Timer Application",
+      liveLink: "https://dwang1257.github.io/pomofocus-app/",
+      githubLink: "https://github.com/dwang1257/pomofocus-app",
+      period: "2023",
+      description: "A modern Pomodoro timer application built with React, featuring customizable work/break intervals, progress tracking, and productivity analytics."
     }
   ];
 
@@ -44,44 +56,73 @@ const Projects = () => {
     setExpandedCard(expandedCard === id ? null : id);
   };
 
+  const handleLinkClick = (e, url) => {
+    e.stopPropagation();
+    window.open(url, '_blank', 'noopener,noreferrer');
+  };
+
   return (
-    <div className='experience-block'>
-      <h1 className='experience-header'>
-        <Animate strArray={expArray} letterClass={letterClass} index={0} />
-      </h1>
-      
-      <div className='experience-container'>
-        {experiences.map((exp) => (
-          <div 
-            key={exp.id}
-            className={`experience-card ${expandedCard === exp.id ? 'expanded' : ''}`}
-            onClick={() => toggleCard(exp.id)}
+    <div className="experience-block">
+      <div className="experience-header">
+        <Animate
+          letterClass={letterClass}
+          strArray={expArray}
+          idx={0}
+        />
+      </div>
+
+      <div className="experience-container">
+        {projects.map((project) => (
+          <div
+            key={project.id}
+            className={`experience-card ${expandedCard === project.id ? 'expanded' : ''}`}
+            onClick={() => toggleCard(project.id)}
           >
-            <div className='card-header'>
-              <h2 className='experience-title'>{exp.title}</h2>
-              <h3 className='experience-company'>{exp.company}</h3>
-              <div className='experience-meta'>
-                <span className='experience-location'>{exp.location}</span>
-                <span className='experience-period'>{exp.period}</span>
+            <div className="card-header">
+              <h3 className="experience-title">{project.title}</h3>
+              <h4 className="experience-company">{project.subtitle}</h4>
+              
+              <div className="experience-meta">
+                <div className="project-links">
+                  {project.liveLink && (
+                    <button
+                      className="project-link live-link"
+                      onClick={(e) => handleLinkClick(e, project.liveLink)}
+                      title="View Live Demo"
+                    >
+                      Link to Website!
+                    </button>
+                  )}
+                  <button
+                    className="project-link github-link"
+                    onClick={(e) => handleLinkClick(e, project.githubLink)}
+                    title="View GitHub Repository"
+                  >
+                    GitHub Repository
+                  </button>
+                </div>
+                <span className="experience-period">{project.period}</span>
               </div>
             </div>
-            
-            {expandedCard === exp.id && (
-              <div className='card-content'>
-                <div className='experience-description'>
-                  {Array.isArray(exp.description) ? (
-                    exp.description.map((item, index) => (
-                      <p key={index} className='description-item'>• {item}</p>
+
+            {expandedCard === project.id && (
+              <div className="card-content">
+                <div className="experience-description">
+                  {Array.isArray(project.description) ? (
+                    project.description.map((item, index) => (
+                      <p key={index} className="description-item">
+                        • {item}
+                      </p>
                     ))
                   ) : (
-                    <p className='description-item'>• {exp.description}</p>
+                    <p className="description-item">• {project.description}</p>
                   )}
                 </div>
               </div>
             )}
             
-            <div className='expand-indicator'>
-              {expandedCard === exp.id ? '−' : '+'}
+            <div className="expand-indicator">
+              {expandedCard === project.id ? '−' : '+'}
             </div>
           </div>
         ))}

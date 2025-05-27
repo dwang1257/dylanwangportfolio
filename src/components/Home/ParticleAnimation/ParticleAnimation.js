@@ -84,16 +84,6 @@ const ParticleAnimation = () => {
     camera.position.y = 2;
     camera.lookAt(0, 0, 0);
 
-    // Mouse interaction
-    const mouse = { x: 0, y: 0 };
-    const handleMouseMove = (event) => {
-      if (!mountRef.current) return;
-      const rect = mountRef.current.getBoundingClientRect();
-      mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
-      mouse.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
-    };
-
-    mountRef.current.addEventListener('mousemove', handleMouseMove);
 
     // Animation loop
     let time = 0;
@@ -120,7 +110,7 @@ const ParticleAnimation = () => {
           positions[i3 + 2] ** 2
         );
         
-        if (distance > 12) {
+        if (distance > 15) {
           const radius = Math.random() * 2 + 1;
           const theta = Math.random() * Math.PI * 2;
           const phi = Math.acos(2 * Math.random() - 1);
@@ -144,9 +134,6 @@ const ParticleAnimation = () => {
       particleSystem.rotation.x += 0.002;
       particleSystem.rotation.y += 0.003;
       
-      // Mouse interaction - slight camera movement
-      camera.position.x += (mouse.x * 2 - camera.position.x) * 0.02;
-      camera.position.y += (mouse.y * 2 - camera.position.y) * 0.02;
       camera.lookAt(0, 0, 0);
       
       renderer.render(scene, camera);
@@ -164,10 +151,7 @@ const ParticleAnimation = () => {
       if (mountRef.current && renderer.domElement) {
         mountRef.current.removeChild(renderer.domElement);
       }
-      if (mountRef.current) {
-        mountRef.current.removeEventListener('mousemove', handleMouseMove);
-      }
-      
+
       // Dispose of Three.js resources
       if (particles) particles.dispose();
       if (particleMaterial) particleMaterial.dispose();

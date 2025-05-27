@@ -67,9 +67,15 @@ a.about-link {
 
 a.projects-link {
     &:after {
+        content: 'Projects';
+    }
+}
+a.experience-link {
+    &:after {
         content: 'Exp';
     }
 }
+
 
 a.contact-link {
     &:after {

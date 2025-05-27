@@ -76,53 +76,10 @@
   margin-top: 8px;
 }
 
-.project-links {
-  display: flex;
-  gap: 12px;
-  align-items: center;
-}
-
-.project-link {
-  background: transparent;
-  border: 1px solid #9C9C6E;
-  color: #9C9C6E;
-  padding: 6px 12px;
-  border-radius: 4px;
-  font-size: 14px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  
-  &:hover {
-    background-color: #9C9C6E;
-    color: #000000;
-    transform: translateY(-1px);
-    box-shadow: 0 2px 8px rgba(156, 156, 110, 0.3);
-  }
-  
-  &:active {
-    transform: translateY(0);
-  }
-}
-
-.live-link {
-  &:hover {
-    box-shadow: 0 2px 8px rgba(76, 175, 80, 0.3);
-  }
-}
-
-.github-link {
-  border-color: #9C9C6E;
-  color: #9C9C6E;
-  
-  &:hover {
-    background-color: #9C9C6E;
-    color: #000000;
-  }
+.experience-location {
+  font-size: 16px;
+  color: #cccccc;
+  font-weight: 400;
 }
 
 .experience-period {
@@ -166,7 +123,16 @@
   }
 }
 
-
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
 // Responsive design
 @media (max-width: 768px) {
@@ -190,16 +156,6 @@
   .experience-meta {
     flex-direction: column;
     align-items: flex-start;
-    gap: 15px;
-  }
-  
-  .project-links {
-    flex-wrap: wrap;
-  }
-  
-  .project-link {
-    font-size: 13px;
-    padding: 5px 10px;
   }
   
   .expand-indicator {
@@ -207,3 +163,4 @@
     right: 20px;
   }
 }
+
