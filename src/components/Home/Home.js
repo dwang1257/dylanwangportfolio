@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import Animate from '../Animate/Animate';
-import Logo from './Logo/logo';
+import ParticleAnimation from './ParticleAnimation/ParticleAnimation';
 import './Home.scss';
 const Home = () => {
     
@@ -23,7 +23,7 @@ const Home = () => {
                 <Link to = '/contact' className='flat-button'>Contact Me</Link>
             </div>
             <div class="loader"></div>
-            <Logo />
+            <ParticleAnimation />
         </div>
     )
 }

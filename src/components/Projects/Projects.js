@@ -1,47 +1,93 @@
+import React, { useState } from 'react';
 import './Projects.scss';
 import Animate from '../Animate/Animate';
-import 'animate.css';
-import { useState } from 'react';
-
 
 const Projects = () => {
+  const expArray = ['E', 'x', 'p', 'e', 'r', 'i', 'e', 'n', 'c', 'e'];
+  const [letterClass, setLetterClass] = useState('text-animate');
+  const [expandedCard, setExpandedCard] = useState(null);
 
-    const expArray = ['E', 'x', 'p', 'e', 'r', 'i', 'e', 'n', 'c', 'e']
-    const scrollArray = ['S', 'c', 'r', 'o', 'l', 'l', ' ', 'D', 'o', 'w', 'n', '!']
-    const [letterClass, setLetterClass] = useState('text-animate')
+  const experiences = [
+    {
+      id: 1,
+      title: "Software Engineer Intern",
+      company: "Fidelity Investments",
+      location: "Merrimack, NH",
+      period: "June 2025 – Aug 2025",
+      description: "Incoming Software Engineer Intern at Fidelity Investments, leveraging Angular, Spring Boot, and SQL to develop and optimize scalable software solutions."
+    },
+    {
+      id: 2,
+      title: "Machine Learning Research Intern",
+      company: "University of Massachusetts Lowell",
+      location: "Lowell, MA",
+      period: "July 2024 – Aug 2024",
+      description: [
+        "Optimized data preparation pipeline by eliminating 50+ irrelevant endoscopy images and establishing an 80/20 train–test split, boosting model accuracy and training throughput for medical imaging applications.",
+        "Developed and integrated a custom PyTorch Dataset class with advanced augmentations (rotation, flipping, cropping) and automated COCO API driven mask generation, producing 1,000+ precise segmentation masks via Python (OS, Pillow, NumPy) and reducing preprocessing errors while enhancing robustness of downstream neural models."
+      ]
+    },
+    {
+      id: 3,
+      title: "Test Engineering Intern",
+      company: "Charm Sciences",
+      location: "Andover, MA",
+      period: "Jun 2022 – Sep 2022",
+      description: [
+        "Performed end-to-end testing and QA for firmware powering 100+ ROSA and Digital Dry Block Incubators, ensuring 100% reliability and performance for clients.",
+        "Gained hands-on experience with the full hardware product lifecycle, from design through assembly, while applying insights to streamline workflows and improve operational efficiency."
+      ]
+    }
+  ];
 
-    return (
-        <div className='experience-block'>
-            <h1 className='experience-header'><Animate  strArray = {expArray} letterClass = {letterClass}index = {0} /></h1>
-            <ul className='experience'>
-                <li className='experience-one'>
-                    <h2 className='experience-title'>Research Intern, UMass Lowell</h2>
-                    <p className='experience-body'>Developed accurate lesion segmentation models by processing over 23,000+ endoscopy images and annotations from JSON files using image segmentation techniques.</p>
-                    <p className='experience-body'>Organized and prepared large-scale datasets for training and validation, ensuring data integrity and consistency by splitting over 23,000 image/mask pairs and categorizing them into separate folders based on patient data.</p>
-                </li>
-                <div className='scroll'><Animate  strArray = {scrollArray} letterClass = {letterClass}index = {0} /></div>
-                <li className='experience-two'>
-                    <h2 className='experience-title'>Resident Assistant, UMass Amherst</h2>
-                    <p className='experience-body'>Managed the residential experience for over 600 residents, implementing comprehensive programming and support initiatives that improved resident satisfaction by 20%.</p>
-                    <p className='experience-body'>Facilitated over 30 discussions on academic success, mental health awareness, and leadership, enhancing community engagement and well-being.</p>
-                </li>
-                <li className='experience-three'>
-                    <h2 className='experience-title'>Electronics Assembly Technician, Charm Sciences</h2>
-                    <p className='experience-body'>Acquired experience in testing firmware in over 100 ROSA and Digital Dry Block Incubators, analyzing performance and ensuring reliability.</p>
-                    <p className='experience-body'>Explored and understood the product life cycle, applying knowledge to improve product development processes</p>
-                </li>
-                <li className='experience-four'>
-                    <h2 className='experience-title'>Crew Member, Chipotle Mexican Grill</h2>
-                    <p className='experience-body'>Achieved a 98% customer satisfaction rate by providing attentive service and accurate orders.</p>
-                    <p className='experience-body'>Collaborated with team members to improve inventory management, reducing food waste and maintaining freshness.</p>
-                </li>
-            </ul>
-        
-        </div>
+  const toggleCard = (id) => {
+    setExpandedCard(expandedCard === id ? null : id);
+  };
 
-    )
+  return (
+    <div className='experience-block'>
+      <h1 className='experience-header'>
+        <Animate strArray={expArray} letterClass={letterClass} index={0} />
+      </h1>
+      
+      <div className='experience-container'>
+        {experiences.map((exp) => (
+          <div 
+            key={exp.id}
+            className={`experience-card ${expandedCard === exp.id ? 'expanded' : ''}`}
+            onClick={() => toggleCard(exp.id)}
+          >
+            <div className='card-header'>
+              <h2 className='experience-title'>{exp.title}</h2>
+              <h3 className='experience-company'>{exp.company}</h3>
+              <div className='experience-meta'>
+                <span className='experience-location'>{exp.location}</span>
+                <span className='experience-period'>{exp.period}</span>
+              </div>
+            </div>
+            
+            {expandedCard === exp.id && (
+              <div className='card-content'>
+                <div className='experience-description'>
+                  {Array.isArray(exp.description) ? (
+                    exp.description.map((item, index) => (
+                      <p key={index} className='description-item'>• {item}</p>
+                    ))
+                  ) : (
+                    <p className='description-item'>• {exp.description}</p>
+                  )}
+                </div>
+              </div>
+            )}
+            
+            <div className='expand-indicator'>
+              {expandedCard === exp.id ? '−' : '+'}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
 
-
-}
-
-export default Projects
+export default Projects;
