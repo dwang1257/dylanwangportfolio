@@ -14,7 +14,10 @@ const Experience = () => {
       company: "Fidelity Investments",
       location: "Merrimack, NH",
       period: "June 2025 – Aug 2025",
-      description: "Incoming Software Engineer Intern at Fidelity Investments, leveraging Angular, Spring Boot, and SQL to develop and optimize scalable software solutions."
+      description: ["Modernized and migrated a legacy metadata application by redesigning the UI and reducing load times by 30% through Redis caching and optimized SQL queries which supports 100% of the business unit’s APIs, enabling engineers to manage metadata across 1000+ microservices.",
+        "Automated daily API reporting by building a tool that extracts usage metrics from Splunk for Tomcat/WSO2 APIs, generating data delivered to AWS S3 buckets, which are ingested into Snowflake, then visualized via PowerBI, processing 1,500+ API requests daily",
+        "Implemented Open Policy Agent enforcement across multiple Kubernetes deployed applications on Amazon EKS, integrating automated security policy checks within Jenkins CI/CD pipelines, reducing security risks found through penetration testing."
+      ]
     },
     {
       id: 2,
@@ -23,19 +26,18 @@ const Experience = () => {
       location: "Lowell, MA",
       period: "July 2024 – Aug 2024",
       description: [
-        "Optimized data preparation pipeline by eliminating 50+ irrelevant endoscopy images and establishing an 80/20 train–test split, boosting model accuracy and training throughput for medical imaging applications.",
-        "Developed and integrated a custom PyTorch Dataset class with advanced augmentations (rotation, flipping, cropping) and automated COCO API driven mask generation, producing 1,000+ precise segmentation masks via Python (OS, Pillow, NumPy) and reducing preprocessing errors while enhancing robustness of downstream neural models."
+        "Built a custom PyTorch dataset class with automated mask generation and advanced augmentations, reducing preprocessing errors by 45% and generating 1,000+ segmentation masks for endoscopy classification.",
+        "Optimized data preparation pipeline by filtering 50+ irrelevant endoscopy images and implementing an 80 to 20 train/test split, boosting model accuracy by 30% and increasing training throughput by 15% for medical imaging applications."
       ]
     },
     {
       id: 3,
-      title: "Test Engineering Intern",
+      title: "Software Engineering Intern",
       company: "Charm Sciences",
       location: "Andover, MA",
       period: "Jun 2022 – Sep 2022",
       description: [
-        "Performed end-to-end testing and QA for firmware powering 100+ ROSA and Digital Dry Block Incubators, ensuring 100% reliability and performance for clients.",
-        "Gained hands-on experience with the full hardware product lifecycle, from design through assembly, while applying insights to streamline workflows and improve operational efficiency."
+        "Wrote Python test scripts to validate ROSA incubators and digital dry block incubators, reducing manual testing time by 85% and ensuring consistent QA across 500+ hardware units.",
       ]
     }
   ];

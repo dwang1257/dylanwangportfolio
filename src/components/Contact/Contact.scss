@@ -1,9 +1,9 @@
 .contact-block {
     min-height: 100vh;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
-    padding: 40px 20px;
+    padding: 80px 20px 40px;
     background: linear-gradient(135deg, rgba(0, 0, 0, 0.95) 0%, rgba(28, 28, 24, 0.95) 100%);
 }
 
@@ -11,25 +11,33 @@
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
 }
 
 .contact-title {
     text-align: center;
     font-weight: 400;
     font-size: 50px;
-    margin-bottom: 60px;
+    margin-bottom: 40px;
     color: #9C9C6E;
 }
 
 .contact-form {
-    max-width: 500px;
+    max-width: 800px;
     margin: 0 auto;
     background: rgba(0, 0, 0, 0.8);
-    padding: 40px;
+    padding: 50px;
     border-radius: 12px;
     border: 2px solid #9C9C6E;
     box-shadow: 0 10px 30px rgba(156, 156, 110, 0.1);
     transition: all 0.3s ease;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 30px;
+    align-items: start;
     
     &:hover {
         border-color: #B5B57A;
@@ -39,27 +47,33 @@
 }
 
 .form-group {
-    margin-bottom: 30px;
+    margin-bottom: 25px;
+    text-align: left;
+    
+    &:nth-child(3) {
+        grid-column: span 2;
+    }
     
     label {
         display: block;
-        font-size: 18px;
+        font-size: 19px;
         font-weight: 500;
         color: #9C9C6E;
-        margin-bottom: 8px;
+        margin-bottom: 10px;
         letter-spacing: 0.5px;
     }
     
     input, textarea {
         width: 100%;
-        padding: 8px 10px;
+        padding: 14px 18px;
         background: linear-gradient(145deg, #1a1a1a, #2a2a2a);
         border: 2px solid #333333;
         border-radius: 8px;
-        font-size: 16px;
+        font-size: 17px;
         color: #ffffff;
         transition: all 0.3s ease;
         font-family: inherit;
+        box-sizing: border-box;
         
         &::placeholder {
             color: #888888;
@@ -87,11 +101,11 @@
 
 .send-button {
     width: 100%;
-    padding: 16px 32px;
+    padding: 18px 36px;
     background: linear-gradient(145deg, #9C9C6E, #B5B57A);
     border: none;
     border-radius: 8px;
-    font-size: 18px;
+    font-size: 19px;
     font-weight: 600;
     color: #000000;
     cursor: pointer;
@@ -100,6 +114,8 @@
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
+    grid-column: span 2;
+    margin-top: 10px;
     
     span {
         position: relative;
@@ -145,6 +161,15 @@
     
     .contact-form {
         padding: 25px;
+        grid-template-columns: 1fr;
+        
+        .form-group:nth-child(3) {
+            grid-column: span 1;
+        }
+        
+        .send-button {
+            grid-column: span 1;
+        }
     }
     
     .form-group {
@@ -173,5 +198,14 @@
     
     .contact-form {
         padding: 20px;
+        grid-template-columns: 1fr;
+        
+        .form-group:nth-child(3) {
+            grid-column: span 1;
+        }
+        
+        .send-button {
+            grid-column: span 1;
+        }
     }
 }

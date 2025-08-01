@@ -67,7 +67,7 @@ const Projects = () => {
         <Animate
           letterClass={letterClass}
           strArray={expArray}
-          idx={0}
+          index={0}
         />
       </div>
 
